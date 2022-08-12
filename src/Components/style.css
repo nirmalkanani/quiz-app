@@ -1,0 +1,21 @@
+input[type="text"]{
+    border: none;
+    border-bottom: 2px solid black;
+    width: 350px;
+    padding: 10px;
+}
+
+input[type="text"]:focus{
+    outline: none;
+    background-color: rgba(213, 252, 252,0.5);
+}
+
+input[type="submit"]{
+    border: none;
+    padding: 10px 36px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+}

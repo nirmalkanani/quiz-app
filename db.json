@@ -1,0 +1,234 @@
+{
+  "quizdata": [
+    {
+      "question": "Which is your fav colour?",
+      "options": [
+        {
+          "id": "1350dddd-ea08-44e2-9678-69424ec4a9fd",
+          "optionValue": "Red"
+        },
+        {
+          "id": "14f88ce1-86c9-4f88-b26b-eb4eb3a4f399",
+          "optionValue": "Black"
+        },
+        {
+          "id": "f4e910e8-a4a0-4bfa-bd4b-aab76a315173",
+          "optionValue": "Blue"
+        },
+        {
+          "id": "56d66e02-9e0f-4fbe-a24f-19b19aa8c33e",
+          "optionValue": "Dark Grey"
+        }
+      ],
+      "answerkey": "14f88ce1-86c9-4f88-b26b-eb4eb3a4f399",
+      "id": 1
+    },
+    {
+      "question": "Which is your fav car?",
+      "options": [
+        {
+          "id": "f82b024d-4e05-4b4c-8006-de366bf372c8",
+          "optionValue": "Farrari"
+        },
+        {
+          "id": "00d2aef8-c918-4e68-9779-ebe02ba7a766",
+          "optionValue": "Bugadi"
+        },
+        {
+          "id": "853b1856-561b-4d75-8e60-7f4387d95f79",
+          "optionValue": "Porce"
+        },
+        {
+          "id": "86742b68-9685-452f-a23f-4bbceb5e8f04",
+          "optionValue": "BMW"
+        }
+      ],
+      "answerkey": "853b1856-561b-4d75-8e60-7f4387d95f79",
+      "id": 2
+    },
+    {
+      "question": "What you think about India?",
+      "options": [
+        {
+          "id": "e41a055d-2939-47ce-9a3e-d040ec0ad392",
+          "optionValue": "Best Country "
+        },
+        {
+          "id": "82e0ca66-fc59-4615-9180-4171ac31917e",
+          "optionValue": "High Demanand"
+        },
+        {
+          "id": "40f006b9-9912-43bb-8893-d9c536ae43e9",
+          "optionValue": "Best It Developement "
+        },
+        {
+          "id": "ddabb741-f0f8-48fd-aeab-dcefacedbc36",
+          "optionValue": "Other"
+        }
+      ],
+      "answerkey": "40f006b9-9912-43bb-8893-d9c536ae43e9",
+      "id": 3
+    },
+    {
+      "question": "Which is your fav song?",
+      "options": [
+        {
+          "id": "08bbc6d4-1696-4f95-b05f-9b28a29b4314",
+          "optionValue": "Mausam Mausam"
+        },
+        {
+          "id": "d5d512f9-24f9-413a-bca6-03d819612a87",
+          "optionValue": "Galat Fehmi"
+        },
+        {
+          "id": "39c4e827-f00d-4aa1-8e8b-cddab658750b",
+          "optionValue": "High Heels"
+        },
+        {
+          "id": "57a0c0bf-4b06-4f9f-b973-0c0f4ae878a5",
+          "optionValue": "Blue eyes"
+        }
+      ],
+      "answerkey": "08bbc6d4-1696-4f95-b05f-9b28a29b4314",
+      "id": 4
+    },
+    {
+      "question": "Which is your fav singer?",
+      "options": [
+        {
+          "id": "e1f875f0-59b6-430b-9eff-9db96e8dfa2b",
+          "optionValue": "Arjit Singh"
+        },
+        {
+          "id": "2245b277-7582-4275-ad4d-bf355fb4432e",
+          "optionValue": "Artif Aslam"
+        },
+        {
+          "id": "333cf7d1-d8b5-4b03-be04-4b08d4e812a6",
+          "optionValue": "Badshah"
+        },
+        {
+          "id": "2632ce94-08c0-47fa-89be-8c5753ec2736",
+          "optionValue": "Honey Singh"
+        }
+      ],
+      "answerkey": "2245b277-7582-4275-ad4d-bf355fb4432e",
+      "id": 5
+    },
+    {
+      "question": "Which is your fav actor?",
+      "options": [
+        {
+          "id": "97b058e4-1516-47fd-a9ec-4827e8f6f05b",
+          "optionValue": "Yash"
+        },
+        {
+          "id": "2fa05398-5f72-4d10-b986-6a4af9891c8d",
+          "optionValue": "Vickey Kaushal"
+        },
+        {
+          "id": "1ad4b840-fbfb-4895-9045-61c4ea2bc73d",
+          "optionValue": "Siddharth Sukla"
+        },
+        {
+          "id": "3020770e-0fc0-4fd7-83f1-f426a3295a23",
+          "optionValue": "Shushant Sign Rajput"
+        }
+      ],
+      "answerkey": "1ad4b840-fbfb-4895-9045-61c4ea2bc73d",
+      "id": 6
+    },
+    {
+      "question": "Which is your fav movie ?",
+      "options": [
+        {
+          "id": "c10433d5-f2c1-4803-ba40-9154af92ea42",
+          "optionValue": "URI : The Sergical Strike"
+        },
+        {
+          "id": "18523051-a4da-40ef-9346-a9e26f4d5b7d",
+          "optionValue": "Om : Rastra Kavach"
+        },
+        {
+          "id": "9adde80a-1263-43ed-9e6c-dce2a8761d43",
+          "optionValue": "Om Santi Om"
+        },
+        {
+          "id": "5ea7c404-1fa3-4ca0-8637-4375aeb3f461",
+          "optionValue": "K.G.F Chepter 2"
+        }
+      ],
+      "answerkey": "18523051-a4da-40ef-9346-a9e26f4d5b7d",
+      "id": 7
+    },
+    {
+      "question": "Which is your fav TV Show?",
+      "options": [
+        {
+          "id": "f892dfcb-e711-4990-9d06-712d320e6ca7",
+          "optionValue": "Khatro Ke Khiladi "
+        },
+        {
+          "id": "0f427154-244d-4041-927d-dbf02df172f4",
+          "optionValue": "Bigg Boss"
+        },
+        {
+          "id": "7a141e11-ff48-4a6f-a3ba-c46579df2ae0",
+          "optionValue": "Kapil Sharma"
+        },
+        {
+          "id": "d6d9ba16-714e-42e2-a50a-52eb149a6251",
+          "optionValue": "Roddiess"
+        }
+      ],
+      "answerkey": "f892dfcb-e711-4990-9d06-712d320e6ca7",
+      "id": 8
+    },
+    {
+      "question": "Which is your fav actress?",
+      "options": [
+        {
+          "id": "3762725c-461d-41ea-bb52-4dbfa8385250",
+          "optionValue": "A.S.B"
+        },
+        {
+          "id": "60297359-e712-4efb-b60e-2484cb4010ca",
+          "optionValue": "Disha Patni"
+        },
+        {
+          "id": "444e8b37-aa6d-4cc9-af98-11514778fb33",
+          "optionValue": "Sradhha"
+        },
+        {
+          "id": "8e1eee56-edba-4e70-a0d1-12d717fa3210",
+          "optionValue": "Other"
+        }
+      ],
+      "answerkey": "3762725c-461d-41ea-bb52-4dbfa8385250",
+      "id": 9
+    },
+    {
+      "question": "Best Social Media App for Marketing?",
+      "options": [
+        {
+          "id": "5aec2e3e-d136-413f-8218-1dfbf5da20c7",
+          "optionValue": "Instagram"
+        },
+        {
+          "id": "fba55a82-da60-421e-8805-29e286c3dbf0",
+          "optionValue": "Facebook"
+        },
+        {
+          "id": "2b58d5d8-97dd-45ab-90d9-7e762868e1da",
+          "optionValue": "Twiiter"
+        },
+        {
+          "id": "796a0d5a-9f08-445b-8ca8-d432dc8f4d26",
+          "optionValue": "Whatsapp"
+        }
+      ],
+      "answerkey": "fba55a82-da60-421e-8805-29e286c3dbf0",
+      "id": 10
+    }
+  ]
+}
