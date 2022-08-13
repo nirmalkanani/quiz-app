@@ -4,45 +4,57 @@ import axios from 'axios'
 
 const Result = () => {
 
-  const [userAns, setUserAns] = useState([])
+  const [ score, setScore ] = useState(0)
 
-  const [defAns, setDefAns] = useState([])
+  const getUserData = useSelector((state) => state.answerReducer.answers)
 
-  const [score, setScore] = useState(0)
+  const [ userData, setUserData ] = useState(getUserData)
 
-  const getData = useSelector((state) => state.answerReducer.answers)
+  const [ total, setTotal ] = useState(0)
 
   const data = async () => {
-    const getDefaultData = await axios.get('http://localhost:8000/quizdata')
-    setDefAns(getDefaultData.data)
+    const data = await axios.get('http://localhost:8000/quizdata')
+    if(data.status == 200){
+      const defAns = data.data
+      setTotal(defAns.length)
+      const a = []
+      for (let i = 0; i < defAns.length; i++) {
+        // const data = defAns[i];
+        // console.log(data)
+        if(defAns[i].answerkey === userData[i].answerValue){
+          a.push(i)
+        }
+      }
+      console.log(a)
+      setScore(a.length)
+      console.log(defAns)
+    }else(
+      console.log("Not Set")
+    )
   }
+  
+
 
   useEffect(() => {
-    setUserAns(getData);
-    data();
-    for(let i = 0; i < defAns.length; i++) {
-      // if(defAns[i].answerkey === userAns[i].answerValue){
-      //   console.log(i)
-      // }
-      const findData = defAns.find((e,i) => e[i].answerkey === userAns[i].answerValue)
-      console.log(findData)
-      {
-        defAns[i].answerkey === userAns[i].answerValue ?  setScore(score + 1) : console.log("Error") 
-      }
-    }
-  }, [])
+    // console.log(userData)
+
+    (async ()=> {
+     await data();
+    //  console.log(apiAnswer, "1")
+
+    })()
+  },[])
+
 
   return (
-
     <div className='container'>
       <div className="row my-5">
         <div className="col-12">
           <h3 className='text-center'>YOUR FINAL SCORE IS</h3>
-          <h1 className='text-center fs-1 text-red'>{score}</h1>
+          <h1 className='text-center fs-1 text-red'>{score} / {total}</h1>
         </div>
       </div>
     </div>
-
   )
 }
 

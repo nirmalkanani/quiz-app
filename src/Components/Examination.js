@@ -12,11 +12,12 @@ const Examination = () => {
 
   const [count, setCount] = useState(0)
 
+  const [ resultCount, setResultCount ] = useState(0)
+
   const [queData, setQueData] = useState()
 
-  const [ checkValue, setCheckValue ] = useState()
-
   const initialAns = {
+    questionID : "",
     answerValue: ""
   }
 
@@ -29,33 +30,44 @@ const Examination = () => {
     if (data.status == 200) {
       setQueData(data.data)
     } else {
-      console.log("Error")
+      // console.log("Error")
     }
   }
 
   useEffect(() => {
     getData()
+    console.log(answerData)
   }, []);
 
   const handleChange = (e) => {
-    setAnswerData({ ...answerData, [e.target.name]: e.target.value })
+    setAnswerData({ ...answerData, questionID: queData[count].id,  [e.target.name]: e.target.value })
   }
 
   const dispatch = useDispatch()
 
   const next = () => {
-    setCount(count + 1)
     dispatch(ANSWERKEY(answerData))
-
     if (count < queData.length - 1) {
       setCount(count + 1)
+      queData.filter((element) => {
+        if(element.answerkey === answerData.answerValue){
+          setResultCount( resultCount + 1 )
+          console.log(resultCount)
+        }
+      })
     } else {
       navigate('/result')
     }
+    console.log(answerData)
+
   }
 
   const previous = () => {
     setCount(count - 1)
+    setAnswerData({
+      answerValue: ""
+    })
+    console.log(answerData)
   }
 
   return (
@@ -94,3 +106,5 @@ const Examination = () => {
 }
 
 export default Examination
+
+

@@ -12,6 +12,7 @@ import { useImperativeHandle } from 'react';
 const Addquestion = () => {
 
   const InitialData = {
+    questionID:"",
     question: "",
     options: [],
     answerkey: ""
@@ -41,7 +42,7 @@ const Addquestion = () => {
   const dispatch = useDispatch()
 
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value })
+    setData({ ...data, questionID: uuidv4(),  [e.target.name]: e.target.value })
   }
 
   const handleChangeOp1 = (e) => {
