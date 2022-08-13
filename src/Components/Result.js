@@ -18,16 +18,16 @@ const Result = () => {
       const defAns = data.data
       setTotal(defAns.length)
       const a = []
+      const D = defAns.filter((element) => element.id === userData.id)
+      console.log(D)
       for (let i = 0; i < defAns.length; i++) {
-        // const data = defAns[i];
-        // console.log(data)
         if(defAns[i].answerkey === userData[i].answerValue){
           a.push(i)
         }
       }
       console.log(a)
       setScore(a.length)
-      console.log(defAns)
+      console.log(userData)
     }else(
       console.log("Not Set")
     )
@@ -36,12 +36,8 @@ const Result = () => {
 
 
   useEffect(() => {
-    // console.log(userData)
-
     (async ()=> {
      await data();
-    //  console.log(apiAnswer, "1")
-
     })()
   },[])
 
