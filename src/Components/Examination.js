@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './component.css'
 import { ANSWERKEY } from '../redux/action/action'
-import { useDispatch} from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import {useNavigate } from 'react-router-dom'
 
 const Examination = () => {
@@ -21,6 +21,8 @@ const Examination = () => {
     answerValue: ""
   }
 
+  // const getold = useSelector((state) => state.answerReducer.answers)
+
   const [answerData, setAnswerData] = useState(initialAns)
 
   const navigate = useNavigate()
@@ -31,7 +33,12 @@ const Examination = () => {
       const dataAll = data.data
 
       const arr = getRandomArr(dataAll)
-      setQueData(data.data)
+      const Newarr = arr.map((element) => { 
+        const newdata = getRandomArr(element.options)
+        element.options = newdata
+        return element
+      })
+      setQueData(Newarr)
 
     } else {
       console.log("Error")
@@ -42,14 +49,14 @@ const Examination = () => {
 
     const blank = []
 
-      const Index = []
+    const Index = []
 
-      for (let i = 0; i < data.length; i++) {
-        const GetRandom = getRandomIndex(data.length, Index)
-        const random = data[GetRandom]
-          Index.push(GetRandom)
-          blank.push(random)
-      }
+    for (let i = 0; i < data.length; i++) {
+      const GetRandom = getRandomIndex(data.length, Index)
+      const random = data[GetRandom]
+        Index.push(GetRandom)
+        blank.push(random)
+    }
       return blank
   }
 
@@ -67,11 +74,17 @@ const Examination = () => {
   }, []);
 
   const handleChange = (e) => {
-    setAnswerData({ ...answerData, questionID: queData[count].questionID, [e.target.name]: e.target.value })
+      setAnswerData({questionID: queData[count].questionID, [e.target.name]: e.target.value })
   }
+
+
 
   const next = () => {
     dispatch(ANSWERKEY(answerData))
+    setAnswerData({
+      questionID: "",
+      answerValue: ""
+    })
     if (count < queData.length - 1) {
       setValue(true)
       setCount(count + 1)
@@ -79,9 +92,26 @@ const Examination = () => {
       navigate('/result')
     }
   }
-
+  
+  const getold = useSelector((state) => state.answerReducer.answers)
   const previous = () => {
     setCount(count - 1)
+    
+    for (let i = 0; i < queData.length; i++) {
+      
+      const a = getold[i]?.questionID
+
+      const b = queData[i]?.questionID
+
+      if(a === b){
+        console.log("succes")
+      }
+    }
+    
+      // const a = getold.find((element) => { return element.questionID })
+      // console.log(a)
+      // const b = queData.find((element) => { return element.questionID })
+      // console.log(b)
   }
 
   return (
@@ -97,7 +127,7 @@ const Examination = () => {
                     queData[count].options.map((element, index) =>
                       <label className="check-lable d-block rounded col-12 col-md-8" key={index}>
                         <div className="check-lable-sub">
-                          <input type="radio" id="answerValue" name='answerValue' checked={element.id == answerData.answerValue ? true : false} value={element.id} onChange={(e) => handleChange(e)} />
+                          <input type="radio" id="answerValue" name='answerValue' checked={ element.id == answerData.answerValue ? true : false} value={element.id} onChange={(e) => handleChange(e)} />
                           <div className="lable-border">
                             <div className="lable-text">{element.optionValue}</div>
                           </div>
