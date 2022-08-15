@@ -21,9 +21,16 @@ const Result = () => {
       const D = defAns.filter((element) => element.id === userData.id)
       console.log(D)
       for (let i = 0; i < defAns.length; i++) {
+        const mainID = defAns[i].questionID
+        console.log(mainID, "Question")
+
+        const answer = userData[i].questionID
+        console.log(answer, "Answer")
+
         if(defAns[i].answerkey === userData[i].answerValue){
           a.push(i)
         }
+
       }
       console.log(a)
       setScore(a.length)
@@ -32,15 +39,12 @@ const Result = () => {
       console.log("Not Set")
     )
   }
-  
-
 
   useEffect(() => {
     (async ()=> {
      await data();
     })()
   },[])
-
 
   return (
     <div className='container'>

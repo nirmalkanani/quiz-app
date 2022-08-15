@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './component.css'
 import { ANSWERKEY } from '../redux/action/action'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch} from 'react-redux'
+import {useNavigate } from 'react-router-dom'
 
 const Examination = () => {
 
@@ -31,7 +31,7 @@ const Examination = () => {
       const dataAll = data.data
 
       const arr = getRandomArr(dataAll)
-      setQueData(arr)
+      setQueData(data.data)
 
     } else {
       console.log("Error")
@@ -67,7 +67,7 @@ const Examination = () => {
   }, []);
 
   const handleChange = (e) => {
-    setAnswerData({ ...answerData, questionID: queData[count].id, [e.target.name]: e.target.value })
+    setAnswerData({ ...answerData, questionID: queData[count].questionID, [e.target.name]: e.target.value })
   }
 
   const next = () => {
@@ -89,13 +89,13 @@ const Examination = () => {
       <div className='container'>
         <div className='row mt-5'>
           {queData == undefined ? "" :
-            <div className='col-12'>
+            <div className='col-12 col-md-8'>
               <div className="question-show">
-                <h3 className='text-dark border border-2 border-dark rounded py-3 fw-bold ps-3 w-50'>{count + 1}) {queData[count].question}</h3>
-                <div className="options-show my-2">
+                <h3 className='text-dark border border-2 border-dark rounded py-3 fw-bold ps-3 w-auto'>{count + 1}) {queData[count].question}</h3>
+                  <div className="options-show my-2">
                   {
-                    getRandomArr(queData[count].options).map((element, index) =>
-                      <label className="check-lable d-block w-25 rounded" key={index}>
+                    queData[count].options.map((element, index) =>
+                      <label className="check-lable d-block rounded col-12 col-md-8" key={index}>
                         <div className="check-lable-sub">
                           <input type="radio" id="answerValue" name='answerValue' checked={element.id == answerData.answerValue ? true : false} value={element.id} onChange={(e) => handleChange(e)} />
                           <div className="lable-border">
