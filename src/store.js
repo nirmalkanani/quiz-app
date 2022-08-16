@@ -7,3 +7,5 @@ export const store = configureStore({
         reducer : rootred,
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api),
     })
+
+    
