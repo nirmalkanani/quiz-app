@@ -74,7 +74,6 @@ const Addquestion = () => {
       data.options.push(op1, op2, op3, op4)
       dispatch(SENDDATA(data))
       toast.success("Your Question Add Successfully")
-      navigate("/add-question")
     }
   }
 

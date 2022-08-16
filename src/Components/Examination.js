@@ -24,7 +24,7 @@ const Examination = () => {
   // const getReduxData = useSelector((state) => state.answerReducer.answers)
 
   const [answerData, setAnswerData] = useState(initialAns)
-  console.log(answerData)
+
   const getReduxData = useSelector((state) => state.answerReducer.answers)
 
   const navigate = useNavigate()
@@ -91,9 +91,11 @@ const Examination = () => {
         dispatch(UPDATEANSWER(answerData))
       }
     } else if (!answerData.answerValue) {
-      counter_action()
-      dispatch(ANSWERKEY({...answerData, questionID: queData[count].questionID , answerValue:""} ))
+      console.log({count, queData})
       
+      dispatch(ANSWERKEY({...answerData, questionID: queData[count].questionID , answerValue:""} ))
+      counter_action()
+      toast.success("Answer Add Successfully")
     } else {
       dispatch(ANSWERKEY(answerData))
       counter_action()
@@ -127,10 +129,10 @@ const Examination = () => {
     const QUESTION_ID = queData == undefined ? "" : queData[count]?.questionID
 
     const ANSWERS_ID = getReduxData.find((data) => data.questionID === QUESTION_ID)
-    // console.log(ANSWERS_ID)
-    // debugger
     if(ANSWERS_ID){
       setAnswerData(ANSWERS_ID)
+    }else{
+      setAnswerData({ questionID: QUESTION_ID, answerValue: "" })
     }
     
   }

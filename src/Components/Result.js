@@ -35,12 +35,13 @@ export const Result = () => {
         const B = defAns.find((element) => {
           if (element.answerkey === answer) {
             return a.push(element)
-          } else if (answer == "") {
+          } else if (userData[i].answerValue == "") {
             return b.push(element)
           }
         })
       }
       setScore(a.length)
+      console.log(b)
       setBlank(b.length)
       setWrong(defAns.length - a.length)
     } else (
@@ -49,39 +50,45 @@ export const Result = () => {
   }
 
   useEffect(() => {
-    // if (userData == "") {
-    //   navigate('/')
-    // } else {
+    if (userData == "") {
+      navigate('/')
+    } else {
     (async () => {
       await data();
     })()
-    // }
+    }
   }, [])
 
   return (
     <div className='container'>
+      <div className="row my-5">
+        <div className="col-12">
+          <h3 className='text-center'>YOUR FINAL SCORE IS</h3>
+          <h1 className='text-center fs-1 text-red'>{score} / {total}</h1>
+        </div>
+      </div>
       <div className="row my-5 text-center align-items-center">
-        <div className="col-12 col-md-4 my-3 ">
-          <div class="card text-center border border-2 rounded border-dark">
-            <div class="card-body">
-              <h3 class="card-title text-dark">Correct Answers</h3>
-              <h4 class="card-text fs-1 text-primary fw-bold">{score}</h4>
+        <div className="col-12 col-md-4  my-3">
+          <div className="card text-center border border-2 rounded border-dark">
+            <div className="card-body">
+              <h3 className="card-title text-dark">Correct Answers</h3>
+              <h4 className="card-text fs-1 text-primary fw-bold">{score}</h4>
             </div>
           </div>
         </div>
-        <div className="col-12 col-md-4 my-3 ">
-        <div class="card text-center border border-2 rounded border-dark">
-            <div class="card-body">
-              <h3 class="card-title text-dark">Wrong Answers</h3>
-              <h4 class="card-text fs-1 text-primary fw-bold">{wrong}</h4>
+        <div className="col-12 col-md-4 my-3">
+        <div className="card text-center border border-2 rounded border-dark">
+            <div className="card-body">
+              <h3 className="card-title text-dark">Wrong Answers</h3>
+              <h4 className="card-text fs-1 text-primary fw-bold">{wrong}</h4>
             </div>
           </div>
         </div>
-        <div className="col-12 col-md-4 my-3 ">
-        <div class="card text-center border border-2 rounded border-dark">
-            <div class="card-body">
-              <h3 class="card-title text-dark">Not Attempted</h3>
-              <h4 class="card-text fs-1 text-primary fw-bold">{blank}</h4>
+        <div className="col-12 col-md-4  my-3">
+        <div className="card text-center border border-2 rounded border-dark">
+            <div className="card-body">
+              <h3 className="card-title text-dark">Not Attempted</h3>
+              <h4 className="card-text fs-1 text-primary fw-bold">{blank}</h4>
             </div>
           </div>
         </div>
