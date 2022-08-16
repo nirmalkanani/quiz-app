@@ -9,7 +9,9 @@ export const Result = () => {
 
   const [score, setScore] = useState(0)
 
-  const [ wrong, setWrong ] = useState(0)
+  const [wrong, setWrong] = useState(0)
+
+  const [blank, setBlank] = useState(0)
 
   const getUserData = useSelector((state) => state.answerReducer.answers)
 
@@ -25,6 +27,7 @@ export const Result = () => {
       const defAns = data.data
       setTotal(defAns.length)
       const a = []
+      const b = []
       for (let i = 0; i < defAns.length; i++) {
 
         const answer = userData[i]?.answerValue
@@ -32,46 +35,55 @@ export const Result = () => {
         const B = defAns.find((element) => {
           if (element.answerkey === answer) {
             return a.push(element)
+          } else if (answer == "") {
+            return b.push(element)
           }
         })
       }
       setScore(a.length)
+      setBlank(b.length)
       setWrong(defAns.length - a.length)
     } else (
       console.log("Not Set")
     )
   }
-  
+
   useEffect(() => {
     // if (userData == "") {
     //   navigate('/')
     // } else {
-      (async () => {
-        await data();
-      })()
+    (async () => {
+      await data();
+    })()
     // }
   }, [])
 
   return (
     <div className='container'>
-      <div className="row my-5">
-        <div className="col-12">
-          <h3 className='text-center'>YOUR FINAL SCORE IS</h3>
-          <h1 className='text-center fs-1 text-red'>{score} / {total}</h1>
+      <div className="row my-5 text-center align-items-center">
+        <div className="col-12 col-md-4 my-3 ">
+          <div class="card text-center border border-2 rounded border-dark">
+            <div class="card-body">
+              <h3 class="card-title text-dark">Correct Answers</h3>
+              <h4 class="card-text fs-1 text-primary fw-bold">{score}</h4>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="row my-5">
-        <div className="col-4">
-          <h3>Total Correct Answers</h3>
-          <h4>{score}</h4>
+        <div className="col-12 col-md-4 my-3 ">
+        <div class="card text-center border border-2 rounded border-dark">
+            <div class="card-body">
+              <h3 class="card-title text-dark">Wrong Answers</h3>
+              <h4 class="card-text fs-1 text-primary fw-bold">{wrong}</h4>
+            </div>
+          </div>
         </div>
-        <div className="col-4">
-          <h3>Total Incorrect Answers</h3>
-          <h4>{wrong}</h4>
-        </div>
-        <div className="col-4">
-          <h3>Not Attempted Question</h3>
-          <h4></h4>
+        <div className="col-12 col-md-4 my-3 ">
+        <div class="card text-center border border-2 rounded border-dark">
+            <div class="card-body">
+              <h3 class="card-title text-dark">Not Attempted</h3>
+              <h4 class="card-text fs-1 text-primary fw-bold">{blank}</h4>
+            </div>
+          </div>
         </div>
       </div>
     </div>
