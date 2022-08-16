@@ -21,13 +21,11 @@ const Examination = () => {
     questionID: "",
     answerValue: ""
   }
-
   // const getReduxData = useSelector((state) => state.answerReducer.answers)
 
   const [answerData, setAnswerData] = useState(initialAns)
-
+  console.log(answerData)
   const getReduxData = useSelector((state) => state.answerReducer.answers)
-  console.log(getReduxData)
 
   const navigate = useNavigate()
 
@@ -85,18 +83,17 @@ const Examination = () => {
 
     const QUESTIONS_ID = getReduxData.find((data) => data.questionID === answerData.questionID)
     const ANSWERS_ID = getReduxData.find((data) => data.answerValue === answerData.answerValue)
-
-    if (answerData == undefined || answerData == "") {
-      counter_action()
-      dispatch(ANSWERKEY({...answerData, questionID: queData.questionID} ))
-    } else if (QUESTIONS_ID) {
+    
+    if (QUESTIONS_ID) {
       counter_action()
       if (ANSWERS_ID) {
-        toast.dark("Already Have Data")
       } else {
         dispatch(UPDATEANSWER(answerData))
       }
-      toast.warning("Data Update Successfully")
+    } else if (!answerData.answerValue) {
+      counter_action()
+      dispatch(ANSWERKEY({...answerData, questionID: queData[count].questionID , answerValue:""} ))
+      
     } else {
       dispatch(ANSWERKEY(answerData))
       counter_action()
@@ -127,10 +124,15 @@ const Examination = () => {
 
   const previous_action = () => {
 
-    const QUESTION_ID = queData == undefined ? console.log("") : queData[count]?.questionID
+    const QUESTION_ID = queData == undefined ? "" : queData[count]?.questionID
 
     const ANSWERS_ID = getReduxData.find((data) => data.questionID === QUESTION_ID)
-    setAnswerData(ANSWERS_ID)
+    // console.log(ANSWERS_ID)
+    // debugger
+    if(ANSWERS_ID){
+      setAnswerData(ANSWERS_ID)
+    }
+    
   }
 
   return (
