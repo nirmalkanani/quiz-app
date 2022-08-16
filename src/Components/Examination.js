@@ -88,7 +88,7 @@ const Examination = () => {
 
     if (answerData == undefined || answerData == "") {
       counter_action()
-      dispatch(ANSWERKEY(answerData, answerData.questionID:queData.questionID))
+      dispatch(ANSWERKEY({...answerData, questionID: queData.questionID} ))
     } else if (QUESTIONS_ID) {
       counter_action()
       if (ANSWERS_ID) {
