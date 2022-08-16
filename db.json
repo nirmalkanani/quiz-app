@@ -215,6 +215,30 @@
       ],
       "answerkey": "beeb1829-f16b-4dc1-9bdb-ec6de73096fd",
       "id": 9
+    },
+    {
+      "questionID": "b08803c8-f328-405f-ba1a-36990bfbc450",
+      "question": "How do you feel when you have no friend?",
+      "options": [
+        {
+          "id": "e3a61b15-7ef1-4a27-ab97-2db0b4f062b4",
+          "optionValue": "Good"
+        },
+        {
+          "id": "5eecc469-5ea6-4cea-aebb-bbb2e8684b70",
+          "optionValue": "Better"
+        },
+        {
+          "id": "c10fcb12-cb98-4c75-8fe3-83ae546ddab9",
+          "optionValue": "Alone"
+        },
+        {
+          "id": "776e25be-94d9-44aa-bba5-840cb00d8659",
+          "optionValue": "Sad"
+        }
+      ],
+      "answerkey": "5eecc469-5ea6-4cea-aebb-bbb2e8684b70",
+      "id": 10
     }
   ]
 }

@@ -10,8 +10,7 @@ export const stateReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case "ADD_USERDATA":
             return {
-                ...state,
-                states: [...state.states, action.payload]
+                states: action.payload
             }
             default:
                 return state
@@ -25,6 +24,13 @@ export const answerReducer = (state = INITIAL_ANSWER_STATE, action) => {
             return {
                 ...state,
                 answers: [...state.answers, action.payload]
+            }
+
+        case "UPDATE_ANSWER":
+            const newAnswers = state.answers.map((element) => element.questionID === action.payload.questionID ? action.payload : element)
+            return {
+                ...state,
+                answers: newAnswers
             }
             default:
                 return state

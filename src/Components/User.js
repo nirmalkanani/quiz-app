@@ -15,16 +15,22 @@ const User = () => {
     username: ""
   }
 
+  const getReduxUser = useSelector((state) => state.stateReducer.states)
+
+  const [ reduxUser, setReduxUser ] = useState(getReduxUser)
+
   const navigate = useNavigate()
 
-  const [data, setData] = useState(InitialState)
+  const [data, setData] = useState(getReduxUser)
 
   const { username } = data
 
   const dispatch = useDispatch()
 
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value })
+    const name = e.target.name
+    const value = e.target.value
+    setData({[name] : value })
   }
 
   const RandomID = Math.random() * (100 - 1) + 1;
@@ -48,7 +54,7 @@ const User = () => {
         <div className="col-12">
           <form action="#" method='post' className='text-center my-5' onSubmit={(e) => handleSubmit(e)}>
             <div className="input-area my-3">
-              <input type="text" name='username' id='username' value={username} onChange={(e) => handleChange(e)} />
+              <input type="text" name='username' id='username' value={username} placeholder="Enter Your Name" onChange={(e) => handleChange(e)} />
             </div>
             <div>
               <input type="submit" />

@@ -2,15 +2,16 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './component.css'
-import { ANSWERKEY } from '../redux/action/action'
-import { useDispatch, useSelector} from 'react-redux'
-import {useNavigate } from 'react-router-dom'
+import { ANSWERKEY, UPDATEANSWER } from '../redux/action/action'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const Examination = () => {
 
   const [value, setValue] = useState(false)
 
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState()
 
   const dispatch = useDispatch()
 
@@ -21,9 +22,12 @@ const Examination = () => {
     answerValue: ""
   }
 
-  // const getold = useSelector((state) => state.answerReducer.answers)
+  // const getReduxData = useSelector((state) => state.answerReducer.answers)
 
   const [answerData, setAnswerData] = useState(initialAns)
+
+  const getReduxData = useSelector((state) => state.answerReducer.answers)
+  console.log(getReduxData)
 
   const navigate = useNavigate()
 
@@ -33,13 +37,13 @@ const Examination = () => {
       const dataAll = data.data
 
       const arr = getRandomArr(dataAll)
-      const Newarr = arr.map((element) => { 
+      const Newarr = arr.map((element) => {
         const newdata = getRandomArr(element.options)
         element.options = newdata
         return element
       })
       setQueData(Newarr)
-
+      setCount(0)
     } else {
       console.log("Error")
     }
@@ -54,17 +58,17 @@ const Examination = () => {
     for (let i = 0; i < data.length; i++) {
       const GetRandom = getRandomIndex(data.length, Index)
       const random = data[GetRandom]
-        Index.push(GetRandom)
-        blank.push(random)
+      Index.push(GetRandom)
+      blank.push(random)
     }
-      return blank
+    return blank
   }
 
   const getRandomIndex = (length, arr) => {
     const Unique = Math.floor(Math.random() * length)
-    if(arr.includes(Unique)){
+    if (arr.includes(Unique)) {
       return getRandomIndex(length, arr)
-    }else{
+    } else {
       return Unique
     }
   }
@@ -74,17 +78,32 @@ const Examination = () => {
   }, []);
 
   const handleChange = (e) => {
-      setAnswerData({questionID: queData[count].questionID, [e.target.name]: e.target.value })
+    setAnswerData({ questionID: queData[count].questionID, [e.target.name]: e.target.value })
   }
 
-
-
   const next = () => {
-    dispatch(ANSWERKEY(answerData))
-    setAnswerData({
-      questionID: "",
-      answerValue: ""
-    })
+
+    const QUESTIONS_ID = getReduxData.find((data) => data.questionID === answerData.questionID)
+    const ANSWERS_ID = getReduxData.find((data) => data.answerValue === answerData.answerValue)
+
+    if (answerData == undefined || answerData == "") {
+      counter_action()
+      dispatch(ANSWERKEY(answerData, answerData.questionID:queData.questionID))
+    } else if (QUESTIONS_ID) {
+      counter_action()
+      if (ANSWERS_ID) {
+        toast.dark("Already Have Data")
+      } else {
+        dispatch(UPDATEANSWER(answerData))
+      }
+      toast.warning("Data Update Successfully")
+    } else {
+      dispatch(ANSWERKEY(answerData))
+      counter_action()
+    }
+  }
+
+  const counter_action = () => {
     if (count < queData.length - 1) {
       setValue(true)
       setCount(count + 1)
@@ -92,26 +111,26 @@ const Examination = () => {
       navigate('/result')
     }
   }
-  
-  const getold = useSelector((state) => state.answerReducer.answers)
+
   const previous = () => {
-    setCount(count - 1)
-    
-    for (let i = 0; i < queData.length; i++) {
-      
-      const a = getold[i]?.questionID
-
-      const b = queData[i]?.questionID
-
-      if(a === b){
-        console.log("succes")
-      }
+    dispatch(UPDATEANSWER(answerData))
+    if (count == 0) {
+      setCount(0)
+    } else {
+      setCount(count - 1)
     }
-    
-      // const a = getold.find((element) => { return element.questionID })
-      // console.log(a)
-      // const b = queData.find((element) => { return element.questionID })
-      // console.log(b)
+  }
+
+  useEffect(() => {
+    previous_action()
+  }, [count])
+
+  const previous_action = () => {
+
+    const QUESTION_ID = queData == undefined ? console.log("") : queData[count]?.questionID
+
+    const ANSWERS_ID = getReduxData.find((data) => data.questionID === QUESTION_ID)
+    setAnswerData(ANSWERS_ID)
   }
 
   return (
@@ -122,12 +141,12 @@ const Examination = () => {
             <div className='col-12 col-md-8'>
               <div className="question-show">
                 <h3 className='text-dark border border-2 border-dark rounded py-3 fw-bold ps-3 w-auto'>{count + 1}) {queData[count].question}</h3>
-                  <div className="options-show my-2">
+                <div className="options-show my-2">
                   {
                     queData[count].options.map((element, index) =>
                       <label className="check-lable d-block rounded col-12 col-md-8" key={index}>
                         <div className="check-lable-sub">
-                          <input type="radio" id="answerValue" name='answerValue' checked={ element.id == answerData.answerValue ? true : false} value={element.id} onChange={(e) => handleChange(e)} />
+                          <input type="radio" id="answerValue" name='answerValue' checked={element.id === answerData?.answerValue ? true : false} value={element.id} onChange={(e) => handleChange(e)} />
                           <div className="lable-border">
                             <div className="lable-text">{element.optionValue}</div>
                           </div>
@@ -142,7 +161,6 @@ const Examination = () => {
         </div>
         <div className="btn-groups">
           {value ? <button type="click" className='btn btn-dark me-4 py-2 px-3' onClick={previous}> Previous </button> : ""}
-
           <button type="click" className='btn btn-dark me-4 py-2 px-3' onClick={next}> Save & Next</button>
         </div>
       </div>

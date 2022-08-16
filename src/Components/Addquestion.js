@@ -65,7 +65,7 @@ const Addquestion = () => {
 
   const sendQueData = (e) => {
 
-    const checkQue = question
+    const checkQue = question && op1.optionValue && op2.optionValue && op3.optionValue && op4.optionValue
     e.preventDefault()
     
     if (!checkQue) {

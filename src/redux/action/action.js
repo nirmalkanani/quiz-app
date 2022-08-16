@@ -24,4 +24,9 @@ export const ANSWERKEY = (item) => {
     }
 }
 
- 
+export const UPDATEANSWER = (item) => {
+    return{
+        type:"UPDATE_ANSWER",
+        payload:item
+    }
+}
